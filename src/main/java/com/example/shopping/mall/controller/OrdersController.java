@@ -24,23 +24,23 @@ import com.example.shopping.mall.vo.ServerResponse;
 @RestController
 public class OrdersController extends DefaultHeader {
     @Autowired
-    OrdersServiceImpl ordersService;
+    OrdersServiceImpl service;
 
     @RequestMapping(value = "/get/order/all")
     public ResponseEntity<ServerResponse<List<OrdersModel>>> getAll() {
-        ResponseEntity<ServerResponse<List<OrdersModel>>> rerspEntity =
+        ResponseEntity<ServerResponse<List<OrdersModel>>> entity =
             new ResponseEntity<ServerResponse<List<OrdersModel>>>(
-                ServerResponse.create(SUCCES_CODE.getRetCode(), ordersService.getAll()), DefaultHeader.HEADERS,
+                ServerResponse.create(SUCCES_CODE.getRetCode(), service.getAll()), DefaultHeader.HEADERS,
                 HttpStatus.OK);
-        return rerspEntity;
+        return entity;
     }
 
     @RequestMapping(value = "/get/order/status/{iStatus}")
     public ResponseEntity<ServerResponse<List<OrdersModel>>> findByStatus(@PathVariable int iStatus) {
-        ResponseEntity<ServerResponse<List<OrdersModel>>> rerspEntity =
+        ResponseEntity<ServerResponse<List<OrdersModel>>> entity =
             new ResponseEntity<ServerResponse<List<OrdersModel>>>(
-                ServerResponse.create(SUCCES_CODE.getRetCode(), ordersService.findByStatus(iStatus)),
-                DefaultHeader.HEADERS, HttpStatus.OK);
-        return rerspEntity;
+                ServerResponse.create(SUCCES_CODE.getRetCode(), service.findByStatus(iStatus)), DefaultHeader.HEADERS,
+                HttpStatus.OK);
+        return entity;
     }
 }
